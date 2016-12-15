@@ -35,6 +35,24 @@ cluster build_cluster(bld_id);
 --classroom
 
 --lab
+create or replace type lab_T as object(
+bld_id varchar2(10),
+lab_no varchar2(10),
+lab_capacity varchar2(22),
+member procedure insert_tutor,
+member procedure delete_tutor)
+/
+create or replace type lab_equipment 
+as varray(5)of lab_T
+
+create table lab of lab_T(
+bld_id not null,
+lab_no not null,
+primary key(bld_id, lab_no),
+foreign key(bld_id) references 
+build(bld_id))
+cluster build_cluster(bld_id);
+)
 
 --degree
 
@@ -128,6 +146,20 @@ END;
 --associate_lecturer
 
 --tutor
+create or replace type tutor as object(
+no_hours number(2),
+rate number(2)
+)/
+create or replace function insert_tutor(
+no_hours IN number, rate IN number)IS
+begin
+member procedure insert_tutor;
+END;
+create or replace function delete_tutor(
+no_hours IN number, rate IN number)IS
+begin
+member procedure delete_tutor;
+END;
 
 --enrolls_in
 
