@@ -44,6 +44,10 @@ END;
 --enrolls_in
 
 --subject
+BEGIN
+Subject_T.insert_subject ('CSE21NET', 'Networking','10','CSE11IS,'10008895');
+Subject_T.insert_subject ('CSE42ADB', 'Advanced Database','15','CSE21DB,'10006935');
+END ;
 
 --takes
 
